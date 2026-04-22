@@ -32,12 +32,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/quitequinn/sanity-duplicate-and-rename.git"
+    "url": "https://github.com/Liiift-Studio/sanity-duplicate-and-rename.git"
   },
   "bugs": {
-    "url": "https://github.com/quitequinn/sanity-duplicate-and-rename/issues"
+    "url": "https://github.com/Liiift-Studio/sanity-duplicate-and-rename/issues"
   },
-  "homepage": "https://github.com/quitequinn/sanity-duplicate-and-rename#readme",
+  "homepage": "https://github.com/Liiift-Studio/sanity-duplicate-and-rename#readme",
   "peerDependencies": {
     "react": "^18.0.0",
     "sanity": "^3.0.0"

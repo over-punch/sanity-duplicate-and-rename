@@ -1,0 +1,36 @@
+%% Data-flow / operation model for @liiift-studio/sanity-duplicate-and-rename
+%% Rendered to assets/data-flow.svg by `npm run capture` (scripts/capture.mjs).
+flowchart TD
+    A["Scan criteria<br/>type · title/name search<br/>or custom GROQ"] --> B{{"GROQ query<br/>built in component"}}
+    B --> C[("Sanity dataset")]
+    C --> D["Matched documents<br/>capped at maxDocuments"]
+
+    D --> E["You select which docs<br/>to duplicate"]
+    E --> F["Clean copy<br/>strip _id · _rev · _createdAt · _updatedAt"]
+
+    F --> G{"removeReferences?"}
+    G -->|"On — default"| H["Drop every<br/>_type == 'reference'"]
+    G -->|"Off"| I["Keep references as-is"]
+
+    H --> J{"updateSlugs?"}
+    I --> J
+    J -->|"On — default"| K["slug.current + '-copy-' + timestamp"]
+    J -->|"Off"| L["Slug unchanged"]
+
+    K --> M["Rename fields via namingPattern<br/>{original} {index} {timestamp} {date}"]
+    L --> M
+
+    M --> N{"dryRun?"}
+    N -->|"On"| O["Preview only<br/>no writes · fake preview ids"]
+    N -->|"Off"| P["client.create(doc)<br/>batched, batchSize at a time"]
+    P --> C
+
+    O --> Q(["DuplicationResult<br/>duplicated · errors · newDocuments"])
+    P --> Q
+
+    classDef write fill:#3a1212,stroke:#e03e3e,color:#ffd9d9;
+    classDef safe fill:#0f2a16,stroke:#3fa55f,color:#d6f5df;
+    classDef store fill:#1a1a2e,stroke:#6b6bd6,color:#dcdcff;
+    class P write;
+    class O,Q safe;
+    class C store;

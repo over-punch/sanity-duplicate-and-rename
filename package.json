@@ -1,6 +1,6 @@
 {
 	"name": "@liiift-studio/sanity-duplicate-and-rename",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "Duplicate and move fields across documents in Sanity Studio with bulk processing",
 	"main": "dist/index.js",
 	"module": "dist/index.js",

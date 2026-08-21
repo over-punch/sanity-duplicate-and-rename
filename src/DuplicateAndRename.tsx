@@ -12,10 +12,9 @@ import {
   TextInput,
   Checkbox,
   Badge,
-  Spinner,
-  Toast
-} from '@sanity/ui'
-import { DuplicateIcon, SearchIcon, EditIcon } from '@sanity/icons'
+  Spinner
+} from '@liiift-studio/sanity-ui-compat'
+import { DuplicateIcon, SearchIcon, EditIcon } from '@liiift-studio/sanity-ui-compat/icons'
 import { SanityClient } from 'sanity'
 
 export interface DuplicateAndRenameProps {

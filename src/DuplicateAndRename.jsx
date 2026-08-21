@@ -1,6 +1,6 @@
 // Component for duplicating and renaming fields across documents
-import { Stack, Grid, Heading, Text, Button, TextInput, Select, Radio, Card, Box } from '@sanity/ui'
-import { LockIcon, UnlockIcon } from '@sanity/icons'
+import { Stack, Grid, Heading, Text, Button, TextInput, Select, Radio, Card, Box } from '@liiift-studio/sanity-ui-compat'
+import { LockIcon, UnlockIcon } from '@liiift-studio/sanity-ui-compat/icons'
 import { useState, useEffect } from 'react'
 import DangerModeWarning, { shouldShowDangerWarning } from './DangerModeWarning'
 

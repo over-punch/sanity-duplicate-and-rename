@@ -3,7 +3,7 @@
 A bulk **document-duplication** component for **Sanity Studio** that scans documents by type, search, or custom GROQ, lets you pick which ones to clone, and creates renamed copies in one pass — with templated naming, optional reference stripping, automatic slug bumping, batch processing, and a dry-run preview.
 
 [![npm](https://img.shields.io/npm/v/@liiift-studio/sanity-duplicate-and-rename.svg)](https://www.npmjs.com/package/@liiift-studio/sanity-duplicate-and-rename)
-![Sanity](https://img.shields.io/badge/Sanity-v3%20%7C%20v4%20%7C%20v5-f03e2f.svg)
+![Sanity Studio v3–v6](https://img.shields.io/badge/Sanity%20Studio-v3%20%E2%80%93%20v6-f03e2f.svg)
 ![React](https://img.shields.io/badge/React-18%20%7C%2019-61dafb.svg)
 ![license](https://img.shields.io/badge/license-MIT-blue.svg)
 
@@ -63,6 +63,9 @@ Peer dependencies (you almost certainly already have these in a Studio):
 ```bash
 npm install sanity @sanity/ui @sanity/icons react
 ```
+
+**One build covers Sanity Studio v3 through v6** — see
+[Compatibility](#compatibility) for the exact ranges and how that is achieved.
 
 ---
 
@@ -158,20 +161,85 @@ field you list under "Fields to update" (default `title,name`):
 
 ## Compatibility
 
-| Peer dependency | Supported range |
-|---|---|
-| `sanity` | `^3.0.0 \|\| ^4.0.0 \|\| ^5.0.0` |
-| `@sanity/ui` | `^1.0.0 \|\| ^2.0.0 \|\| ^3.0.0` |
-| `@sanity/icons` | `^2.0.0 \|\| ^3.0.0` |
-| `react` | `^18.0.0 \|\| ^19.0.0` |
+**One build supports Sanity Studio v3, v4, v5 and v6.**
+
+| Peer dependency | Declared range | Meaning |
+|---|---|---|
+| `sanity` | `>=3 <7` | Studio v3 through v6 |
+| `@sanity/ui` | `>=2 <5` | v2, v3, v4 — `<5` is **not** a mistake |
+| `@sanity/icons` | `>=2 <6` | v2 through v5 |
+| `react` | `^18.0.0 \|\| ^19.0.0` | React 18 or 19 |
+
+> **`@sanity/ui` is capped below v5 on purpose.** Studio v6 ships **`@sanity/ui` v4**,
+> not v5, so `>=2 <5` is the correct range for a v6 Studio. It reads like a bug at a
+> glance; it isn't.
+
+### How one build spans four Studio majors
+
+Two upstream breaking changes make naive imports fail across these majors:
+
+- **`@sanity/ui` v4** moved `Tooltip`, `Menu`, `MenuButton`, `MenuItem`, `Code`,
+  `Popover`, `Autocomplete`, `Toast` and `useToast` out of the package root and into
+  **subpath entries**.
+- **`@sanity/icons` v5** removed **every named `*Icon` export**.
+
+The trap is that **both packages still _declare_ the removed names in their `.d.ts`,
+typed `never`**. A named import therefore type-checks, compiles, and bundles cleanly —
+and then throws at runtime in the Studio. `tsc` and your bundler will both tell you it
+is fine.
+
+So this package **imports no `@sanity/ui` or `@sanity/icons` symbol directly**. Every
+component and icon routes through
+[`@liiift-studio/sanity-ui-compat`](https://www.npmjs.com/package/@liiift-studio/sanity-ui-compat),
+which resolves the *installed* namespace at runtime and picks the right root-or-subpath
+location per major. That indirection — not a version-matrix build — is what makes a
+single artifact work on v3 through v6.
+
+`sanity-ui-compat` is a regular `dependencies` entry and is **bundled into this
+package's `dist`**, so there is nothing extra for you to install. (The
+`npm install sanity @sanity/ui @sanity/icons react` line above covers the *Studio's* own
+peers — this package does not import from those two directly.)
+
+### Verification status
+
+v3–v6 support rests on the declared peer ranges, green builds, and use in **three
+in-house Liiift Studio Studios**. It has **not** been exercised broadly in a running
+Sanity 6 Studio beyond those. Treat v6 as supported-and-believed-good rather than
+extensively field-tested, and please file an issue if you hit a gap.
+
+### TypeScript
+
+The published package **does not declare a `types` field**, so TypeScript consumers get
+no bundled declarations and the import resolves as untyped. `src/` ships in the tarball
+and `src/DuplicateAndRename.tsx` carries the real `DuplicateAndRenameProps` and
+`DuplicationResult` interfaces — use the [Props](#props) table above as the contract, or
+declare a local module shim.
+
+### Maintainer note — two implementations under `src/`
+
+`src/DuplicateAndRename.tsx` (documented above) is what `dist` is built from;
+`src/DuplicateAndRename.jsx` is a foundry-specific `dangerMode` variant that is
+**currently dead code**. The `build` entry is `src/index.jsx`, but its extensionless
+`export { default } from './DuplicateAndRename'` resolves the **`.tsx`** under esbuild's
+default `.tsx,.ts,.jsx,.js` order. Verify with `head -1 dist/index.js` (=>
+`// src/DuplicateAndRename.tsx`). Renaming or removing the `.tsx` would silently swap the
+published component with no build error.
 
 ---
 
 ## Part of the Liiift Sanity Tools suite
 
-This is one of a family of Sanity Studio utilities by [Liiift Studio](https://liiift.studio).
-Related tools include `sanity-bulk-data-operations` (bulk field fills/overwrites),
-`sanity-search-and-delete` (bulk delete), and `sanity-export-data` (export to JSON/CSV).
+This is one of a family of Sanity Studio utilities by [Liiift Studio](https://liiift.studio),
+all sharing the same v3–v6 compat approach:
+
+| Package | Does |
+|---|---|
+| [`sanity-search-and-delete`](https://www.npmjs.com/package/@liiift-studio/sanity-search-and-delete) | Find documents and bulk-delete them |
+| [`sanity-delete-unused-assets`](https://www.npmjs.com/package/@liiift-studio/sanity-delete-unused-assets) | Remove unreferenced image/file assets |
+| [`sanity-export-data`](https://www.npmjs.com/package/@liiift-studio/sanity-export-data) | Export document types to CSV or JSON |
+| [`sanity-ui-compat`](https://www.npmjs.com/package/@liiift-studio/sanity-ui-compat) | The compat layer these tools import instead of `@sanity/ui` |
+
+`sanity-bulk-data-operations` (bulk field fills/overwrites) is also part of the suite.
 
 ---
 

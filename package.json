@@ -1,58 +1,58 @@
 {
-	"name": "@liiift-studio/sanity-duplicate-and-rename",
-	"version": "2.0.1",
-	"description": "Duplicate and move fields across documents in Sanity Studio with bulk processing",
-	"main": "dist/index.js",
-	"module": "dist/index.js",
-	"exports": {
-		".": "./dist/index.js"
-	},
-	"files": [
-		"dist",
-		"src"
-	],
-	"scripts": {
-		"build": "esbuild src/index.jsx --bundle=true --format=esm --jsx=automatic --external:react --external:react-dom --external:sanity --external:@sanity/* --outfile=dist/index.js",
-		"capture": "node scripts/capture.mjs",
-		"prepublishOnly": "npm run build"
-	},
-	"keywords": [
-		"sanity",
-		"sanity-studio",
-		"sanity-plugin",
-		"duplicate",
-		"rename",
-		"batch-processing",
-		"content-management",
-		"cms",
-		"utility",
-		"developer-tools"
-	],
-	"author": "Quinn Keaveney <hello@liiift.studio>",
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Liiift-Studio/sanity-duplicate-and-rename.git"
-	},
-	"bugs": {
-		"url": "https://github.com/Liiift-Studio/sanity-duplicate-and-rename/issues"
-	},
-	"homepage": "https://github.com/Liiift-Studio/sanity-duplicate-and-rename#readme",
-	"peerDependencies": {
-		"@sanity/icons": ">=2 <6",
-		"@sanity/ui": ">=2 <5",
-		"react": "^18.0.0 || ^19.0.0",
-		"sanity": ">=3 <7"
-	},
-	"devDependencies": {
-		"@sanity/icons": "^5.2.1",
-		"@sanity/ui": "^4.0.5",
-		"esbuild": "^0.25.0"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"dependencies": {
-		"@liiift-studio/sanity-ui-compat": "^0.1.0"
-	}
+  "name": "@liiift-studio/sanity-duplicate-and-rename",
+  "version": "2.0.2",
+  "description": "Duplicate and move fields across documents in Sanity Studio with bulk processing",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "esbuild src/index.jsx --bundle=true --format=esm --jsx=automatic --external:react --external:react-dom --external:sanity --external:@sanity/* --outfile=dist/index.js",
+    "capture": "node scripts/capture.mjs",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "sanity",
+    "sanity-studio",
+    "sanity-plugin",
+    "duplicate",
+    "rename",
+    "batch-processing",
+    "content-management",
+    "cms",
+    "utility",
+    "developer-tools"
+  ],
+  "author": "Quinn Keaveney <hello@liiift.studio>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Liiift-Studio/sanity-duplicate-and-rename.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Liiift-Studio/sanity-duplicate-and-rename/issues"
+  },
+  "homepage": "https://github.com/Liiift-Studio/sanity-duplicate-and-rename#readme",
+  "peerDependencies": {
+    "@sanity/icons": ">=2 <6",
+    "@sanity/ui": ">=2 <5",
+    "react": "^18.0.0 || ^19.0.0",
+    "sanity": ">=3 <7"
+  },
+  "devDependencies": {
+    "@sanity/icons": "^5.2.1",
+    "@sanity/ui": "^4.0.5",
+    "esbuild": "^0.25.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@liiift-studio/sanity-ui-compat": "^0.1.0"
+  }
 }

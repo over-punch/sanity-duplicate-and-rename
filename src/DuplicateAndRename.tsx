@@ -13,8 +13,8 @@ import {
   Checkbox,
   Badge,
   Spinner
-} from '@liiift-studio/sanity-ui-compat'
-import { DuplicateIcon, SearchIcon, EditIcon } from '@liiift-studio/sanity-ui-compat/icons'
+} from '@overpunch/sanity-ui-compat'
+import { DuplicateIcon, SearchIcon, EditIcon } from '@overpunch/sanity-ui-compat/icons'
 import { SanityClient } from 'sanity'
 
 export interface DuplicateAndRenameProps {

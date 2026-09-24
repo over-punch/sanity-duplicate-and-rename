@@ -1,5 +1,5 @@
 {
-  "name": "@liiift-studio/sanity-duplicate-and-rename",
+  "name": "@overpunch/sanity-duplicate-and-rename",
   "version": "2.0.2",
   "description": "Duplicate and move fields across documents in Sanity Studio with bulk processing",
   "main": "dist/index.js",
@@ -53,6 +53,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@liiift-studio/sanity-ui-compat": "^0.1.0"
+    "@overpunch/sanity-ui-compat": "^0.1.0"
   }
 }

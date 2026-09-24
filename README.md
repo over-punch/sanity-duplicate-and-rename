@@ -2,7 +2,7 @@
 
 A bulk **document-duplication** component for **Sanity Studio** that scans documents by type, search, or custom GROQ, lets you pick which ones to clone, and creates renamed copies in one pass — with templated naming, optional reference stripping, automatic slug bumping, batch processing, and a dry-run preview.
 
-[![npm](https://img.shields.io/npm/v/@liiift-studio/sanity-duplicate-and-rename.svg)](https://www.npmjs.com/package/@liiift-studio/sanity-duplicate-and-rename)
+[![npm](https://img.shields.io/npm/v/@overpunch/sanity-duplicate-and-rename.svg)](https://www.npmjs.com/package/@overpunch/sanity-duplicate-and-rename)
 ![Sanity Studio v3–v6](https://img.shields.io/badge/Sanity%20Studio-v3%20%E2%80%93%20v6-f03e2f.svg)
 ![React](https://img.shields.io/badge/React-18%20%7C%2019-61dafb.svg)
 ![license](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -55,7 +55,7 @@ Regenerate the diagram with `npm run capture` (source: `scripts/data-flow.mmd`).
 ## Installation
 
 ```bash
-npm install @liiift-studio/sanity-duplicate-and-rename
+npm install @overpunch/sanity-duplicate-and-rename
 ```
 
 Peer dependencies (you almost certainly already have these in a Studio):
@@ -74,7 +74,7 @@ npm install sanity @sanity/ui @sanity/icons react
 Drop the component into a Studio tool or a custom desk pane and pass it a client:
 
 ```tsx
-import DuplicateAndRename from '@liiift-studio/sanity-duplicate-and-rename'
+import DuplicateAndRename from '@overpunch/sanity-duplicate-and-rename'
 import {useClient} from 'sanity'
 
 export function DuplicateTool() {
@@ -97,7 +97,7 @@ export function DuplicateTool() {
 A named import is also available:
 
 ```tsx
-import {DuplicateAndRename} from '@liiift-studio/sanity-duplicate-and-rename'
+import {DuplicateAndRename} from '@overpunch/sanity-duplicate-and-rename'
 ```
 
 Start with `dryRun` set, confirm the preview, then remove it to write for real.
@@ -205,7 +205,7 @@ and is `undefined` at runtime.
 
 So this package **imports no `@sanity/ui` or `@sanity/icons` symbol directly**. Every
 component and icon routes through
-[`@liiift-studio/sanity-ui-compat`](https://www.npmjs.com/package/@liiift-studio/sanity-ui-compat),
+[`@overpunch/sanity-ui-compat`](https://www.npmjs.com/package/@overpunch/sanity-ui-compat),
 which resolves the *installed* namespace at runtime and picks the right root-or-subpath
 location per major. That indirection — not a version-matrix build — is what makes a
 single artifact work on v3 through v6.
@@ -249,10 +249,10 @@ all sharing the same v3–v6 compat approach:
 
 | Package | Does |
 |---|---|
-| [`sanity-search-and-delete`](https://www.npmjs.com/package/@liiift-studio/sanity-search-and-delete) | Find documents and bulk-delete them |
-| [`sanity-delete-unused-assets`](https://www.npmjs.com/package/@liiift-studio/sanity-delete-unused-assets) | Remove unreferenced image/file assets |
-| [`sanity-export-data`](https://www.npmjs.com/package/@liiift-studio/sanity-export-data) | Export document types to CSV or JSON |
-| [`sanity-ui-compat`](https://www.npmjs.com/package/@liiift-studio/sanity-ui-compat) | The compat layer these tools import instead of `@sanity/ui` |
+| [`sanity-search-and-delete`](https://www.npmjs.com/package/@overpunch/sanity-search-and-delete) | Find documents and bulk-delete them |
+| [`sanity-delete-unused-assets`](https://www.npmjs.com/package/@overpunch/sanity-delete-unused-assets) | Remove unreferenced image/file assets |
+| [`sanity-export-data`](https://www.npmjs.com/package/@overpunch/sanity-export-data) | Export document types to CSV or JSON |
+| [`sanity-ui-compat`](https://www.npmjs.com/package/@overpunch/sanity-ui-compat) | The compat layer these tools import instead of `@sanity/ui` |
 
 `sanity-bulk-data-operations` (bulk field fills/overwrites) is also part of the suite.
 

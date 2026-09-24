@@ -28,7 +28,7 @@ flag runs the whole flow without writing and returns a preview.
 
 <p align="center">
   <img
-    src="https://raw.githubusercontent.com/Liiift-Studio/sanity-duplicate-and-rename/main/assets/data-flow.svg?v=1"
+    src="https://raw.githubusercontent.com/over-punch/sanity-duplicate-and-rename/main/assets/data-flow.svg?v=1"
     alt="Data flow: scan criteria build a GROQ query against the Sanity dataset; matched documents (capped at maxDocuments) are selected, then each is cleaned (system fields stripped), references optionally removed, slug optionally rewritten, and named fields renamed via the naming pattern; dryRun returns a preview while a real run calls client.create() in batches, producing a DuplicationResult of duplicated count, errors, and new document ids."
     width="420"
   />
@@ -260,4 +260,4 @@ all sharing the same v3–v6 compat approach:
 
 ## License
 
-[MIT](https://github.com/Liiift-Studio/sanity-duplicate-and-rename/blob/main/LICENSE) © Quinn Keaveney / Liiift Studio
+[MIT](https://github.com/over-punch/sanity-duplicate-and-rename/blob/main/LICENSE) © Quinn Keaveney / Liiift Studio

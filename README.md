@@ -244,7 +244,7 @@ published component with no build error.
 
 ## Part of the Liiift Sanity Tools suite
 
-This is one of a family of Sanity Studio utilities by [Liiift Studio](https://liiift.studio),
+This is one of a family of Sanity Studio utilities by [Liiift Studio](https://overpunch.ca),
 all sharing the same v3–v6 compat approach:
 
 | Package | Does |
